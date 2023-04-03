@@ -15,8 +15,10 @@ import AttractionsRoundedIcon from "@mui/icons-material/AttractionsRounded";
 import HailRoundedIcon from "@mui/icons-material/HailRounded";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PersonIcon from "@mui/icons-material/Person";
-
+import {useNavigate }from 'react-router-dom'
 function Header({ type }) {
+  const navigate=useNavigate()
+  const [destination,setDestination]=useState("")
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -36,49 +38,12 @@ function Header({ type }) {
       ...options,
       [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
     };
-    setOptions(updatedOptions);
-    /* if (name === "adult") {
-      if (operation === "i") {
-        let i = options.adult + 1;
-        let updatedOptions = { ...options, adult: i }
-        setOptions(updatedOptions)
-      }
-      else {
-        if (options.adult <= 1) { alert("Cannot go less than 1"); }
-        else {
-          let i = options.adult - 1;
-          let updatedOptions = { ...options, adult: i }
-          setOptions(updatedOptions)
-        }
-      }
-    }
-    else if (name === "children") {
-      if (operation === "i") {
-        let i = options.children + 1;
-        let updatedOptions = { ...options, children: i }
-        setOptions(updatedOptions)
-      }
-      else {
-        if (options.children === 0) { alert("Cannot go less than 0"); }
-        else {
-          let i = options.children - 1;
-          let updatedOptions = { ...options, children: i }
-          setOptions(updatedOptions)
-        }
-      }
-}
-    else if (name === "room") {
-      if (operation === "i") {
-        let i = options.room + 1;
-        let updatedOptions = { ...options, room: i }
-        setOptions(updatedOptions)}
-      else {if (options.room <=1) 
-        { alert("Cannot go less than 1") }
-        else {
-          let i = options.room - 1;
-          let updatedOptions = { ...options, room: i }
-          setOptions(updatedOptions)}}} */
-  };
+    setOptions(updatedOptions);};
+
+
+    const handleSearch=()=>{
+      navigate("/hotels",{state:{destination,date,options}})
+    } 
   return (
     <div className="header">
       <div className={type==="list"?"headerContainer listMode":"headerContainer"}>
@@ -120,10 +85,12 @@ function Header({ type }) {
                   type="text"
                   placeholder="where are you going?"
                   className="headerSearchInput"
+                  value={destination}
                   onClick={() => {
                     setOpenOptions(false);
                     setOpenDate(false);
                   }}
+                  onChange={(e)=>{setDestination(e.target.value)}}
                 />
               </div>
               <div className="headerSearchItem">
@@ -221,7 +188,7 @@ function Header({ type }) {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button onClick={handleSearch} className="headerBtn">Search</button>
               </div>
             </div>
           </>

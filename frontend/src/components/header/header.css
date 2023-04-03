@@ -62,10 +62,11 @@
 .headerSearch{
     position: absolute;
     bottom: -30px;
-    height: 30px;
+    min-height: 30px;
     background-color:white;
     border:3px solid #FFC300;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
     padding: 10px 0px;
@@ -94,11 +95,13 @@
 }
 .date{
     position: absolute;
-    top:50px
+    top:50px;
+    z-index: 2;
 }
 .options{
     position:absolute;
     top: 50px;
+    z-index: 2;
     
     background-color: white;
     color: gray;
