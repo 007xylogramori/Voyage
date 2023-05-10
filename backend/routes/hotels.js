@@ -4,14 +4,15 @@ import mongoose from "mongoose";
 
 // modules
 import Hotel from "../models/Hotel.js"
-import { createHotel, delteHotel, getAllHotel, getOneHotel, updateHotel } from "../Controllers/hotel.js";
+import { createHotel, deleteHotel, getAllHotel, getOneHotel, updateHotel } from "../Controllers/hotel.js";
 import { createError } from "../utils/error.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 
 const router =express.Router()
-router.post("/", createHotel);
-router.put("/:id",updateHotel);
-router.delete("/:id",delteHotel);
+router.post("/",verifyAdmin, createHotel);
+router.put("/:id",verifyAdmin,updateHotel);
+router.delete("/:id",verifyAdmin,deleteHotel);
 router.get("/:id",getOneHotel);
 router.get("/",getAllHotel);
 
