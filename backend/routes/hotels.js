@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 // modules
 import Hotel from "../models/Hotel.js"
-import { countByCity, createHotel, deleteHotel, getAllHotel, getOneHotel, updateHotel } from "../Controllers/hotel.js";
+import { countByCity, countByType, createHotel, deleteHotel, getAllHotel, getOneHotel, updateHotel } from "../Controllers/hotel.js";
 import { createError } from "../utils/error.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -16,6 +16,6 @@ router.delete("/:id",verifyAdmin,deleteHotel);
 router.get("/find/:id",getOneHotel);
 router.get("/",getAllHotel);
 router.get("/countByCity",countByCity);
-router.get("/countByType",getAllHotel);
+router.get("/countByType",countByType);
 
 export default router;

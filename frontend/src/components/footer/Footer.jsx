@@ -1,3 +1,4 @@
+import PreLoader from "../Loader/PreLoader";
 import "./footer.css";
 
 const Footer = () => {
@@ -45,6 +46,7 @@ const Footer = () => {
         </ul>
       </div>
       <h3 className="fText">Copyright © 2022 Voyage by Xylo.</h3>
+      <PreLoader/>
     </div>
   );
 };
