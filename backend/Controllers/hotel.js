@@ -1,6 +1,6 @@
 import Hotel from "../models/Hotel.js";
 
-// ----createHotel
+//------------createHotel
 
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
@@ -42,15 +42,19 @@ export const getOneHotel=async(req,res,next)=>{
         next(error)   }
 }
 // ---------getAllHotel
-
-export const getAllHotel=async(req,res,next)=>{
-    try{
-        const hotel=await Hotel.find();
-        res.status(200).json(hotel)
+export const getAllHotel = async (req, res, next) => {
+    const { min, max,limit, ...others } = req.query;
+    console.log(others)
+    try {
+      const hotels = await Hotel.find({
+        ...others,
+        cheapestPrice: { $gt: min | 1, $lt: max || 99999999 },
+      }).limit(limit || 10 );
+      res.status(200).json(hotels);
+    } catch (err) {
+      next(err);
     }
-    catch (error) {
-       next(error)    }
-}
+  };
 // ----------countByCity-----------
 export const countByCity=async(req,res,next)=>{
     console.log("in")

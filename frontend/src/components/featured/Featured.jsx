@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import useFetch from "../../Hooks/useFetch.jsx";
 import "./features.css";
 import ReactLoading from "react-loading";
@@ -8,10 +8,6 @@ const Featured = () => {
   const { data, loading, error } = useFetch(
    `http://localhost:8800/hotel/countByCity?cities=${cities}`
   );
- const [xo, setxo] = useState(false)
-  setTimeout(()=>{
-    setxo(true)
-  },3000)
   const citiesArray = cities.split(",");
   const ImageArray=[
     "https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o=","https://cf.bstatic.com/xdata/images/city/max500/690334.webp?k=b99df435f06a15a1568ddd5f55d239507c0156985577681ab91274f917af6dbb&o=",

@@ -1,4 +1,6 @@
 .navbar{
+    position:sticky;
+    top: 0;
     height:50px;
     background-color: #003580;
     display: flex;
@@ -6,6 +8,7 @@
 }
 
 .navContainer{
+    
   width: 100%;
   max-width: 1024px;
   color: white;

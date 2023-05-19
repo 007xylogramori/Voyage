@@ -9,6 +9,7 @@ import SearchItem from "../../components/searchItem/SearchItem";
 
 const List = () => {
   const location = useLocation();
+  console.log(location.state)
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
@@ -24,7 +25,7 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input placeholder={destination} type="text"  onChange={(e)=>{setDestination(e.target.value)}} />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
